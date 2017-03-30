@@ -1,0 +1,53 @@
+option java_package = "com.wasu.proto" ;
+option java_outer_classname = "PlayerModule" ;
+
+//微信登录请求
+message WeiXinLoginRequest{
+	required string wId = 1 ;
+}
+
+//登录返回
+message UserResponse{
+	required int32 id = 1;
+	optional string wId = 2;
+	optional int32 level = 3;
+	optional int32 exp = 4;
+	optional int32 winCount = 5;
+	optional int32 lostCount = 6;
+	optional int32 fleeCount = 7;
+	optional int32 drawCount = 8;
+	optional int32 position = 9;
+	optional int32 room = 10;
+	optional int32 state = 11;
+}
+
+//房间信息
+message RoomResponse{
+	required int64 id = 1;
+	optional int64 totalCount = 5;
+	optional int64 userId = 6;
+	optional int64 openCount = 4;
+	optional int32 state = 2;
+	repeated UserResponse player=3;
+	optional int32 banker=7;
+}
+//牌的信息
+message CardResponse{
+    required int32 type = 1;
+    optional int32 cardNum = 2;
+    repeated int32 cards=3;
+}
+//玩家操作信息
+message PlayerInfoResponse{
+    required int64 userid = 1;
+    required int32 position = 2;
+    repeated CardResponse cards=3;
+}
+//房间操作信息
+message RoomOperationInfoResponse{
+    required int32 leftDeskCardNum = 1;
+    repeated PlayerInfoResponse playerInfos = 2;
+    optional int32 operation=3;
+    optional int32 status=4;
+    
+}
